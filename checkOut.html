@@ -2,8 +2,68 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1250">
+<script src="js/jquery.js"></script>
+	<script src="js/jquery.cycle2.min.js"></script>
+	<script src="js/jquery.cycle2.swipe.min.js"></script>
+<script type="text/javascript">
+
+	  WebFontConfig = {
+	    google: { families: [ 'Cabin:400,600,700,400italic,600italic,700italic:latin', 'Gentium+Basic:400,400italic:latin' ] }
+	  };
+	  (function() {
+	    var wf = document.createElement('script');
+	    wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+	      '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+	    wf.type = 'text/javascript';
+	    wf.async = 'true';
+	    var s = document.getElementsByTagName('script')[0];
+	    s.parentNode.insertBefore(wf, s);
+	  })();
+
+
+	
+var delayb4scroll=2000 //Specify initial delay before marquee starts to scroll on page (2000=2 seconds)
+var marqueespeed=2 //Specify marquee scroll speed (larger is faster 1-10)
+var pauseit=1 //Pause marquee onMousever (0=no. 1=yes)?
+
+////NO NEED TO EDIT BELOW THIS LINE////////////
+
+var copyspeed=marqueespeed
+var pausespeed=(pauseit==0)? copyspeed: 0
+var actualheight=''
+
+function scrollmarquee(){
+if (parseInt(cross_marquee.style.top)>(actualheight*(-1)+8)) //if scroller hasn't reached the end of its height
+cross_marquee.style.top=parseInt(cross_marquee.style.top)-copyspeed+"px" //move scroller upwards
+else //else, reset to original position
+cross_marquee.style.top=parseInt(marqueeheight)+8+"px"
+}
+
+function initializemarquee(){
+cross_marquee=document.getElementById("vmarquee")
+cross_marquee.style.top=0
+marqueeheight=document.getElementById("marqueecontainer").offsetHeight
+actualheight=cross_marquee.offsetHeight //height of marquee content (much of which is hidden from view)
+if (window.opera || navigator.userAgent.indexOf("Netscape/7")!=-1){ //if Opera or Netscape 7x, add scrollbars to scroll and exit
+cross_marquee.style.height=marqueeheight+"px"
+cross_marquee.style.overflow="scroll"
+return
+}
+setTimeout('lefttime=setInterval("scrollmarquee()",30)', delayb4scroll)
+}
+
+if (window.addEventListener)
+window.addEventListener("load", initializemarquee, false)
+else if (window.attachEvent)
+window.attachEvent("onload", initializemarquee)
+else if (document.getElementById)
+window.onload=initializemarquee
+
+
+</script>
+
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>OPAC</title>
+<title>Staff Member Login</title>
 <link href="css/cssmenu/menu_assets/styles.css" rel="stylesheet" type="text/css" />
 <style type="text/css">
 <!--
@@ -65,6 +125,7 @@ body {
 }
 a:visited {
 	text-decoration: none;
+	color: #333;
 }
 a:hover {
 	text-decoration: none;
@@ -72,31 +133,14 @@ a:hover {
 a:active {
 	text-decoration: none;
 }
-#apDiv1 {
-	position:absolute;
-	left:437px;
-	top:322px;
-	width:434px;
-	height:195px;
-	z-index:1;
-}
-#apDiv2 {
-	position:absolute;
-	left:338px;
-	top:289px;
-	width:273px;
-	height:286px;
-	z-index:2;
-}
 -->
 </style>
 </head>
 
 <body>
-
 <table width="900" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
-    <td width="900" height="140" align="right" background="banner2.jpg"><table width="900" border="0" cellspacing="0" cellpadding="0">
+    <td height="140" align="right" background="banner2.jpg"><table width="900" border="0" cellspacing="0" cellpadding="0">
       <tr>
         <td width="516" valign="bottom">
           <div id='cssmenu'>
@@ -123,21 +167,34 @@ a:active {
             <td><table width="355" height="145" border="0" cellpadding="0" cellspacing="0">
                 <tr>
                   <td height="68" align="right"><table width="250" height="67" border="0" cellpadding="0" cellspacing="2">
-                     
-                      
-                        
-                           
-                            
-                       
-                      
+                      <tr>
+                        <td width="87"><span class="style19">User Name </span></td>
+                        <td width="163"><form id="form1" name="form1" method="post" action="">
+                            <label>
+                            <input type="text" name="textfield" />
+                            </label>
+                        </form></td>
+                      </tr>
+                      <tr>
+                        <td><span class="style19">Password</span></td>
+                        <td><form id="form2" name="form2" method="post" action="">
+                            <label>
+                            <input type="text" name="textfield2" />
+                            </label>
+                        </form></td>
+                      </tr>
                       <tr>
                         <td>&nbsp;</td>
                         <td><table width="150" border="0" cellspacing="0" cellpadding="0">
-                            
                             <tr>
+                              <td><form id="form3" name="form3" method="post" action="">
+                                  <label>
+                                  <input type="submit" name="Submit" value="Register" />
+                                  </label>
+                              </form></td>
                               <td><form id="form4" name="form4" method="post" action="">
                                   <label>
-                                  <input type="submit" name="Submit2" value="Logout" />
+                                  <input type="submit" name="Submit2" value="Login" />
                                   </label>
                               </form></td>
                             </tr>
@@ -149,7 +206,11 @@ a:active {
                   <td height="69" align="right" valign="top"><table width="351" height="60" border="0" cellpadding="0" cellspacing="2">
                       <tr>
                         <td height="24" align="right"><table width="317" border="0" cellspacing="0" cellpadding="0">
-                            
+                            <tr>
+                              <td width="149"><input type="checkbox" name="checkbox" id="checkbox" />
+                                  <span class="style19">Keep Me Login</span> </td>
+                              <td width="168"><a href="#">Forgot Your Password</a> </td>
+                            </tr>
                         </table></td>
                       </tr>
                       <tr>
@@ -190,47 +251,53 @@ a:active {
   <tr>
     <td><table width="900" height="339" border="0" cellpadding="0" cellspacing="0">
       <tr>
-        <td width="208" height="339" align="center" valign="top"><table width="208" height="489" border="0" cellpadding="0" cellspacing="0">
+        <td width="208" height="300" align="center" valign="top"><table width="208" height="489" border="0" cellpadding="0" cellspacing="0">
           <tr>
-            <td height="350"><table width="208" border="0" cellpadding="0" cellspacing="3" class="ssbg">
+            <td height="300"><table width="208" border="0" cellpadding="0" cellspacing="3" class="ssbg">
               <tr>
-                <td height="25" align="center" bgcolor="#3E4FC6"><strong>SEARCH</strong></td>
+                <td height="25" align="center" bgcolor="#3E4FC6" class="sbg"><strong>MANAGE MEMBER DETAILS</strong></td>
               </tr>
               <tr>
-                <td height="25" align="center" bgcolor="#6699FF" class="sbg"><a href="simpleSearch.html" class="style3 style12 style18">SIMPLE SEARCH</a></td>
+                <td height="25" align="center" bgcolor="#6699FF" class="sbg"><a href="membershipRequest.html" class="style3 style12 style18">MEMBERSHIP REQUEST</a></td>
               </tr>
               <tr>
-                <td height="25" align="center" bgcolor="#6699FF" class="sbg"><a href="advancedSearch.html" class="style3 style12 style18">ADVANCED SEARCH</a></td>
+                <td height="25" align="center" bgcolor="#6699FF" class="sbg"><a href="addMembe.htmlr" class="style3 style12 style18">ADD MEMBER</a></td>
               </tr>
               <tr>
-                <td height="25" align="center" bgcolor="#6699FF" class="sbg"><a href="#" class="style3 style12 style18">BARCODE SEARCH</a></td>
+                <td height="25" align="center" bgcolor="#6699FF" class="sbg"><a href="deleteMember.html" class="style3 style12 style18">DELETE MEMBER</a></td>
               </tr>
               <tr>
-                <td height="25" align="center" bgcolor="#6699FF" class="sbg"><a href="browse.html" class="style3 style12 style18">BROWSE</a></td>
+                <td height="25" align="center" bgcolor="#6699FF" class="sbg"><a href="editMember.html" class="style3 style12 style18">EDIT MEMBER</a></td>
               </tr>
               <tr>
-                <td height="25" align="center" bgcolor="#6699FF" class="sbg"><a href="#" class="style3 style12 style18">NEW ARRIVALS</a></td>
+                <td height="25" align="center" bgcolor="#6699FF" class="sbg"><a href="viewMember.html" class="style3 style12 style18">VIEW MEMBER </a></td>
               </tr>
               <tr>
-                <td height="25" align="center" bgcolor="#6666FF" ><strong>MY ACCOUNT</strong></td>
+                <td height="25" align="center" bgcolor="#6699FF" class="sbg"><a href="issueMemberID.html" class="style3 style12 style18">ISSUE MEMBER ID </a></td>
               </tr>
               <tr>
-                <td height="25" align="center" bgcolor="#6699FF" class="sbg"><a href="memberCheckOut.html" class="style3 style12 style18">CHECK - OUT</a></td>
+                <td height="25" align="center" bgcolor="#6699FF" class="sbg"><a href="viewReports.html" class="style3 style12 style18">VIEW REPORTS </a></td>
               </tr>
               <tr>
-                <td height="25" align="center" bgcolor="#6699FF" class="sbg"><a href="reservations.html" class="style3 style12 style18">RESERVATION</a></td>
+                <td height="25" align="center" bgcolor="#3E4FC6" class="sbg"><strong>MANAGE BOOK DETAILS</strong></td>
               </tr>
               <tr>
-                <td height="25" align="center" bgcolor="#6699FF" class="sbg"><a href="history.html" class="style3 style12 style18">HISTORY</a></td>
+                <td height="25" align="center" bgcolor="#6699FF" class="sbg"><a href="addBooks.html" target="_self">ADD BOOKS </a></td>
               </tr>
               <tr>
-                <td height="25" align="center" bgcolor="#6699FF" class="sbg"><a href="#" class="style3 style18 style12">SUGGESTIONS</a></td>
+                <td height="25" align="center" bgcolor="#6699FF" class="sbg"><a href="deleteBooks.html" class="style3 style12 style18">DELETE BOOKS</a></td>
+              </tr>
+              <tr>
+                <td height="25" align="center" bgcolor="#6699FF" class="sbg"><a href="updateBooks.html" class="style3 style12 style18">UPDATE BOOKS</a></td>
+              </tr>
+              <tr>
+                <td height="25" align="center" bgcolor="#6699FF" class="sbg"><a href="viewBooks.html" class="style3 style18 style12">VIEW BOOKS</a></td>
               </tr>
                <tr>
-                <td height="25" align="center" bgcolor="#6699FF" class="sbg"><a href="#" class="style3 style18 style12">NOTICES</a></td>
+                <td height="25" align="center" bgcolor="#6699FF" class="sbg"><a href="checkIn.html" class="style3 style18 style12">CHECK - IN</a></td>
               </tr>
                <tr>
-                <td height="25" align="center" bgcolor="#6699FF" class="sbg"><a href="#" class="style3 style18 style12">FEED BACK</a></td>
+                <td height="25" align="center" bgcolor="#6699FF" class="sbg"><a href="checkOut.html" class="style3 style18 style12">CHECK - OUT</a></td>
               </tr>
             </table></td>
           </tr>
@@ -346,67 +413,86 @@ document.write("</table></p>");
           </tr>
         </table>
           <div align="right"></div></td>
-        <td align="center" valign="top" bgcolor="#FFFFFF"><p>&nbsp;</p>
-          <h2>Suggestions</h2>
-          <p>Suggest books that are not available in our catalogue.</p>
-      		<p>&nbsp;</p>
-      		
-             <form id="form14" name="form14" method="" action="SuggestionServlet">
-              <table width="298" border="0" cellpadding="5">
-                <tr>
-                  <td width="116">Title</td>
-                  <td width="156">
-                    <label>
-                      <input type="text" name="txtTitle1" id="txtTitle1" />
-                    </label>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Author</td>
-                  <td>
-                    <label>
-                      <input type="text" name="txtTitle2" id="txtTitle2" />
-                    </label>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Publisher</td>
-                  <td>
-                    <label>
-                      <input type="text" name="txtTitle3" id="txtTitle3" />
-                    </label>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Published date</td>
-                  <td>
-                    <label>
-                      <input type="text" name="txtTitle4" id="txtTitle4" />
-                    </label>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Language</td>
-                  <td>
-                    <label>
-                      <input type="text" name="txtTitle5" id="txtTitle5" />
-                    </label>
-                  </td>
-                </tr>
-                </table>
-                
-                 
-                  <p>
-                    <input type="submit" name="button3" id="button3" value="Send Suggestion" />
-                
-                  
-                  
-                    <input type="reset" name="button4" id="button4" value="Cancel" />  </p>
-                   </form>
-               
-
-      		<table width="250" height="100" border="0" cellpadding="0" cellspacing="0">
-   		    </table>
+        <td align="center" valign="top" bgcolor="#FFFFFF"> 
+        
+        <h2>&nbsp;</h2>
+        <h2>Check-Out Books</h2>
+        <table width="587" height="359" border="0">
+  <tr>
+    <td width="127" height="109">User ID</td>
+    <td width="165">
+      <label>
+        <input type="text" name="textfield" id="textfield" />
+      </label>
+    </td>
+    <td width="115"><table width="235" border="1">
+        <tr>
+          <td width="81" height="30">Name</td>
+          <td width="87">Available Books</td>
+          <td width="45">Expiration Date</td>
+          </tr>
+        <tr>
+          <td height="38">&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          </tr>
+      </table></td>
+  </tr>
+  <tr>
+    <td>Item ID</td>
+    <td>
+      <label>
+        <input type="text" name="textfield" id="textfield" />
+      </label>
+    </td>
+    <td><table width="235" border="1">
+        <tr>
+          <td width="69">Book Title</td>
+          <td width="79">Author</td>
+          <td width="65">Accession No.</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td height="20">&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr>
+    <td>Check-out Date</td>
+    <td>
+      <label>
+        <input type="text" name="textfield" id="textfield" />
+      </label>
+    </td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="55">Due Date</td>
+    <td>
+      <label>
+        <input type="text" name="textfield" id="textfield" />
+      </label>
+    </td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><form id="form1" name="form1" method="post" action="">
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+    </form></td>
+    <td><form id="form2" name="form2" method="post" action="">
+      <input type="submit" name="button" id="button" value="Check-out" /> 
+      <input type="submit" name="button2" id="button2" value="Cancel" />
+    </form></td>
+    <td>&nbsp;</td>
+  </tr>
+</table>    
       </tr>
     </table></td>
   </tr>
@@ -427,6 +513,5 @@ document.write("</table></p>");
     </table></td>
   </tr>
 </table>
-
 </body>
 </html>

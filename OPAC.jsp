@@ -1,8 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=windows-1250">
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>OPAC</title>
 <link href="css/cssmenu/menu_assets/styles.css" rel="stylesheet" type="text/css" />
 <style type="text/css">
@@ -33,6 +34,8 @@
 <link href="java/jquery.cycle2.swipe.min.js" rel="stylesheet" type="text/css" />
 <link href="java/jquery.js" rel="stylesheet" type="text/css" />
 <link href="css/styles.css" rel="stylesheet" type="text/css" />
+
+
 <style type="text/css">
 <!--
 .style9 {font-size: 18}
@@ -72,24 +75,9 @@ a:hover {
 a:active {
 	text-decoration: none;
 }
-#apDiv1 {
-	position:absolute;
-	left:437px;
-	top:322px;
-	width:434px;
-	height:195px;
-	z-index:1;
-}
-#apDiv2 {
-	position:absolute;
-	left:338px;
-	top:289px;
-	width:273px;
-	height:286px;
-	z-index:2;
-}
 -->
 </style>
+
 </head>
 
 <body>
@@ -101,7 +89,7 @@ a:active {
         <td width="516" valign="bottom">
           <div id='cssmenu'>
             <ul>
-              <li class='active'><a href='HOME.html'><span>Home</span></a></li>
+              <li class='active'><a href='index.html'><span>Home</span></a></li>
               <li class=''><a href=''><span>Abouts Us</span></a></li>
               <li class='has-sub'><a href='#'><span>Catalogue</span></a>
                   <ul>
@@ -123,26 +111,16 @@ a:active {
             <td><table width="355" height="145" border="0" cellpadding="0" cellspacing="0">
                 <tr>
                   <td height="68" align="right"><table width="250" height="67" border="0" cellpadding="0" cellspacing="2">
-                     
-                      
-                        
-                           
-                            
-                       
                       
                       <tr>
-                        <td>&nbsp;</td>
-                        <td><table width="150" border="0" cellspacing="0" cellpadding="0">
-                            
-                            <tr>
-                              <td><form id="form4" name="form4" method="post" action="">
-                                  <label>
-                                  <input type="submit" name="Submit2" value="Logout" />
-                                  </label>
-                              </form></td>
-                            </tr>
-                        </table></td>
+                        
+                        <td><form id="form2" name="form2" method="post" action="memLogout.jsp">
+                            <label>
+                                  <input type="submit" name="Submit" value="Logout" />
+                            </label>
+                        </form></td>
                       </tr>
+               
                   </table></td>
                 </tr>
                 <tr>
@@ -212,7 +190,7 @@ a:active {
                 <td height="25" align="center" bgcolor="#6699FF" class="sbg"><a href="#" class="style3 style12 style18">NEW ARRIVALS</a></td>
               </tr>
               <tr>
-                <td height="25" align="center" bgcolor="#6666FF" ><strong>MY ACCOUNT</strong></td>
+                <td height="25" align="center" bgcolor="#3E4FC6" ><strong>MY ACCOUNT</strong></td>
               </tr>
               <tr>
                 <td height="25" align="center" bgcolor="#6699FF" class="sbg"><a href="memberCheckOut.html" class="style3 style12 style18">CHECK - OUT</a></td>
@@ -224,7 +202,7 @@ a:active {
                 <td height="25" align="center" bgcolor="#6699FF" class="sbg"><a href="history.html" class="style3 style12 style18">HISTORY</a></td>
               </tr>
               <tr>
-                <td height="25" align="center" bgcolor="#6699FF" class="sbg"><a href="#" class="style3 style18 style12">SUGGESTIONS</a></td>
+                <td height="25" align="center" bgcolor="#6699FF" class="sbg"><a href="suggestions.html" class="style3 style18 style12">SUGGESTIONS</a></td>
               </tr>
                <tr>
                 <td height="25" align="center" bgcolor="#6699FF" class="sbg"><a href="#" class="style3 style18 style12">NOTICES</a></td>
@@ -235,7 +213,9 @@ a:active {
             </table></td>
           </tr>
           <tr>
-            <td align="center" valign="middle" bgcolor="#6699FF"><script LANGUAGE="JavaScript">
+<!-- End -->
+<td align="center" valign="middle" bgcolor="#6699FF">
+<script LANGUAGE="JavaScript">
 
 <!-- Begin
 monthnames = new Array(
@@ -343,68 +323,17 @@ startspaces=0;
 document.write("</table></p>");
 // End -->
 </script></td>
-          </tr>
+</tr>
         </table>
           <div align="right"></div></td>
-        <td align="center" valign="top" bgcolor="#FFFFFF"><p>&nbsp;</p>
-          <h2>Suggestions</h2>
-          <p>Suggest books that are not available in our catalogue.</p>
+        <td align="center" valign="top" bgcolor="#FFFFFF">
+      		  <%String n="  "+session.getAttribute("memUn").toString();System.out.println(n);%>
+      		  
+   		    
       		<p>&nbsp;</p>
-      		
-             <form id="form14" name="form14" method="" action="SuggestionServlet">
-              <table width="298" border="0" cellpadding="5">
-                <tr>
-                  <td width="116">Title</td>
-                  <td width="156">
-                    <label>
-                      <input type="text" name="txtTitle1" id="txtTitle1" />
-                    </label>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Author</td>
-                  <td>
-                    <label>
-                      <input type="text" name="txtTitle2" id="txtTitle2" />
-                    </label>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Publisher</td>
-                  <td>
-                    <label>
-                      <input type="text" name="txtTitle3" id="txtTitle3" />
-                    </label>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Published date</td>
-                  <td>
-                    <label>
-                      <input type="text" name="txtTitle4" id="txtTitle4" />
-                    </label>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Language</td>
-                  <td>
-                    <label>
-                      <input type="text" name="txtTitle5" id="txtTitle5" />
-                    </label>
-                  </td>
-                </tr>
-                </table>
-                
-                 
-                  <p>
-                    <input type="submit" name="button3" id="button3" value="Send Suggestion" />
-                
-                  
-                  
-                    <input type="reset" name="button4" id="button4" value="Cancel" />  </p>
-                   </form>
-               
-
+      		<p>&nbsp;</p>
+      		<h1> Welcome to the Colombo Public Library</h1>
+            <h3> You Are Logged In As Member <input type="text" class="active" value="<%=n%>"/> </h3>
       		<table width="250" height="100" border="0" cellpadding="0" cellspacing="0">
    		    </table>
       </tr>
@@ -427,6 +356,5 @@ document.write("</table></p>");
     </table></td>
   </tr>
 </table>
-
 </body>
 </html>
